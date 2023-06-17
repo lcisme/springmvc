@@ -10,11 +10,12 @@
 
 <table border="1" style="width: 100%;">
   <tr>
-    <th style="width: 5px;">STT</th>
-    <th style="width: 30px;">Name</th>
-    <th style="width: 30px;">Age</th>
-    <th style="width: 30px;">Address</th>
-    <th style="width: 5px;">Action</th>
+    <th style="width: 20px;">STT</th>
+    <th style="width: 20px;">Name</th>
+    <th style="width: 20px;">Age</th>
+    <th style="width: 20px;">Address</th>
+    <th style="width: 10px;">Action</th>
+    <th style="width: 10px;">Delete</th>
   </tr>
   <tr th:each="user : ${users}">
     <td th:text="${userStat.index + 1}"></td>
@@ -22,6 +23,7 @@
     <td th:text="${user.age}"></td>
     <td th:text="${user.address}"></td>
     <td><a th:href="@{/user/edit/{id}(id=${user.id})}">Edit</a></td>
+    <td><a th:href="@{/user/delete/{id}(id=${user.id})}">Delete</a></td>
   </tr>
 </table>
 </body>

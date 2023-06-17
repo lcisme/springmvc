@@ -40,7 +40,7 @@ public class UserDAOImpl extends JdbcDaoSupport implements UserDAO {
     }
 
     @Override
-    public void createUser(UserDTO userDTO) {
+    public String createUser(UserDTO userDTO) {
         MapSqlParameterSource params = new MapSqlParameterSource();
         try {
             String sql = "insert into users (name,age,address) values (:name,:age,:address)";
@@ -48,8 +48,10 @@ public class UserDAOImpl extends JdbcDaoSupport implements UserDAO {
             params.addValue("age", userDTO.getAge());
             params.addValue("address", userDTO.getAddress());
             namedParameterJdbcTemplate.update(sql, params);
+            return "Success";
         }catch (Exception ex){
             System.out.println(ex.getMessage());
+            return "Error";
         }
     }
 
@@ -66,6 +68,18 @@ public class UserDAOImpl extends JdbcDaoSupport implements UserDAO {
         }catch (Exception ex){
             System.out.println(ex.getMessage());
         }
+    }
+
+    @Override
+    public void deleteUSer(Integer id) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        try {
+            String sql = "delete from users where id = :id ";
+            params.addValue("id", id);
+            namedParameterJdbcTemplate.update(sql, params);
+        }catch (Exception ex){
+        System.out.println(ex.getMessage());
+    }
     }
 
     @Override
